@@ -1,44 +1,60 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Items from './Items';
 
-function ToDo() {
-  const toggleItem = (e) => {
-    console.log(e.target.value);
-    alert('DONE');
-    if (e.target.value === false) {
-      e.target.value = true;
-    } else {
-      e.target.value = false;
-    }
-    console.log(e.target.value);
-  };
+class ToDo extends Component {
+  constructor() {
+    super();
+    this.list = [
+      {
+        task: 'Watch tutorial videos...',
+        complete: false,
+        id: 1,
+      },
+      { task: 'Do some practice...', complete: true, id: 2 },
+      { task: 'Keep practicing...', complete: false, id: 3 },
+    ];
+    this.state = {
+      todos: this.list,
+    };
 
-  const list = [
-    {
-      task: 'Watch tutorial videos...',
-      complete: false,
-      id: 1,
-    },
-    { task: 'Do some practice...', complete: true, id: 2 },
-    { task: 'Keep practicing...', complete: false, id: 3 },
-  ];
+    this.toggleItem = this.toggleItem.bind(this);
+  }
 
-  return (
-    <div>
-      <h3>Here Are My To-Dos:</h3>
+  toggleItem(id) {
+    console.log(id);
+
+    this.setState((prevState) => {
+      const updateList = prevState.todos.map((item) => {
+        if (item.id === id) {
+          item.complete = !item.complete;
+        }
+        return item;
+      });
+      return {
+        todos: updateList,
+      };
+    });
+  }
+
+  render() {
+    return (
       <div>
-        {list.map((item) => (
-          <Items
-            key={item.id}
-            task={item.task}
-            complete={item.complete}
-            toggleItem={toggleItem}
-          />
-        ))}
+        <h3>Here Are My To-Dos:</h3>
+        <div>
+          {this.state.todos.map((item) => (
+            <Items
+              key={item.id}
+              id={item.id}
+              task={item.task}
+              complete={item.complete}
+              toggleItem={this.toggleItem}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default ToDo;

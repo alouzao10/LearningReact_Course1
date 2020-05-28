@@ -6,7 +6,7 @@ function Items(props) {
       <input
         type='checkbox'
         value={props.complete}
-        onClick={props.toggleItem}
+        onChange={() => props.toggleItem(props.id)}
         checked={props.complete}
       />
       <span>{props.task}</span>

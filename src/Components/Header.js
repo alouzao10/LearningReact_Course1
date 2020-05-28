@@ -2,7 +2,7 @@ import React from 'react';
 
 import NavBar from './NavBar';
 
-function Header() {
+function Header(props) {
   const firstName = 'Alex';
   const lastName = 'Louzao';
 
@@ -35,6 +35,7 @@ function Header() {
       <h4 style={timeStyle}>
         {hours + ':' + minutes + ' in the ' + timeOfDay}
       </h4>
+      <div>{props.txt + ': ' + props.num}</div>
       <NavBar />
     </div>
   );
