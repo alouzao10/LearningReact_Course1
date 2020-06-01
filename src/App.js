@@ -3,6 +3,7 @@ import './App.css';
 
 import Header from './Components/Header';
 import Content from './Components/Content';
+import Form from './Components/Form';
 import Footer from './Components/Footer';
 
 /*function App() {
@@ -39,6 +40,7 @@ class App extends Component {
       <div className='App'>
         <Header txt={this.state.txt} num={this.state.num} />
         <Content />
+        <Form />
         <Footer />
       </div>
     );

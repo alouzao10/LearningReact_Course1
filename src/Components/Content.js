@@ -21,7 +21,16 @@ class Content extends Component {
     });
   }
 
+  componentDidMount() {
+    console.log('Component Mounted');
+  }
+
+  componentDidUpdate(nextProps, nextState) {
+    console.log('Component Updated');
+  }
+
   render() {
+    console.log('Component Render');
     return (
       <div>
         <p>Here I will better learn some React</p>

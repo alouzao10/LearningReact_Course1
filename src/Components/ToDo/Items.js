@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function Items(props) {
-  return (
-    <div>
-      <input
-        type='checkbox'
-        value={props.complete}
-        onChange={() => props.toggleItem(props.id)}
-        checked={props.complete}
-      />
-      <span>{props.task}</span>
-    </div>
-  );
+class Items extends Component {
+  componentDidUpdate(nextProps, nextState) {
+    console.log('Component Updated');
+  }
+  render() {
+    return (
+      <div>
+        <input
+          type='checkbox'
+          checked={this.props.item.checked}
+          onChange={() => this.props.toggleItem(this.props.item.id)}
+        />
+        <span>{this.props.item.task}</span>
+      </div>
+    );
+  }
 }
 
 export default Items;
